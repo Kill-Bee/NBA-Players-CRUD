@@ -12,30 +12,39 @@ export default function TablePlayer() {
   return (
     <>
       <div className="container">
-        <table className="table table-dark table-striped mt-5">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Picture</th>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Teams</th>
-            </tr>
-          </thead>
+       <div class="card">
+  <div class="table-responsive text-nowrap">
+    <table class="table">
+     <thead>
+        <tr>
+          <th>NO</th>
+          <th>NIS</th>
+          <th>Nama</th>
+          <th>Jenis</th>
+          <th>Bulan</th>
+          <th>Jumlah</th>
+        </tr>
+      </thead>
           <tbody>
             {player.map((a, index) => (
               <tr key={a.id}>
-                <td>{index + 1}</td>
+                <td className="px-4">{index + 1}</td>
                 <td>
-                  <img src={a.photo} alt={a.name} width="50" />
+                  <img src={a.photo} alt={a.name} width="50" className="rounded-circle" />
                 </td>
                 <td>{a.name}</td>
                 <td>{a.position}</td>
                 <td>{a.teams}</td>
+                <td>
+                <button className="btn btn-success mx-3">Edit</button>
+                <button className="btn" style={{backgroundColor: "#992820", color: "white"}}>Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      </div>
       </div>
     </>
   );
