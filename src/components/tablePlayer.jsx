@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { tampilPlayer } from "../services/tampil";
 
-export default function TablePlayer({ onAddClick }) {
+export default function TablePlayer({ onAddClick, onEditClick }) {
   const [player, setPlayer] = useState([]);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function TablePlayer({ onAddClick }) {
                   <td>{a.position}</td>
                   <td>{a.teams}</td>
                   <td>
-                    <button className="btn btn-success mx-3">Edit</button>
+                    <button className="btn btn-success mx-3" onClick={onEditClick}>Edit</button>
                     <button className="btn" style={{ backgroundColor: "#992820", color: "white" }}>Delete</button>
                   </td>
                 </tr>
