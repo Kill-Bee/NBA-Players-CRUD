@@ -44,7 +44,7 @@ export default function TablePlayer({ onAddClick, onEditClick }) {
               ))}
             </tbody>
           </table>
-          <button className="btn btn-secondary" onClick={onAddClick}>Add More 🔄️</button>
+          <button className="btn btn-secondary mt-3" onClick={onAddClick}>Add More 🔄️</button>
         </div>
       </div>
     </>
