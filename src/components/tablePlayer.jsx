@@ -52,7 +52,7 @@ export default function TablePlayer({ players, onAddClick, onEditClick, onDelete
           </tbody>
         </table>
 
-        <button className="btn btn-primary mt-3" onClick={onAddClick}>
+        <button className="btn btn-secondary mt-3" onClick={onAddClick}>
           Add More
         </button>
       </div>

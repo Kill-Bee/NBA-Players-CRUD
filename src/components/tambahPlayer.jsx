@@ -6,23 +6,23 @@ export default function InsertPlayer({ onBackClick, onSuccess }) {
     name: "",
     position: "",
     teams: "",
-  })
+  });
 
-  const [photo, setPhoto] = useState(null)
+  const [photo, setPhoto] = useState(null);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleFileChange = (e) => {
-    setPhoto(e.target.files[0])
-  }
+    setPhoto(e.target.files[0]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      let photoUrl = null
+      let photoUrl = null;
 
       if (photo && photo.size > 2_000_000) {
         alert("Foto maksimal 2MB");
@@ -30,27 +30,49 @@ export default function InsertPlayer({ onBackClick, onSuccess }) {
       }
 
       if (photo) {
-        photoUrl = await uploadPhoto(photo)
+        photoUrl = await uploadPhoto(photo);
       }
 
       await tambahPlayer({
         ...form,
-        photo: photoUrl
-      })
+        photo: photoUrl,
+      });
 
       onSuccess();
     } catch (err) {
-      alert(err.message)
+      alert(err.message);
       console.error(err);
     }
-  }
+  };
 
   return (
     <>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="card p-4 mt-5">
-            <h2 className="mb-3">Insert Player</h2>
+            <div className="row">
+              <div className="col">
+                <h2 className="mb-3">
+                  {" "}
+                  <button type="button" className="btn" onClick={onBackClick}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-arrow-left"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+                      ></path>
+                    </svg>
+                  </button>{" "}
+                  Insert Player
+                </h2>
+              </div>
+            </div>
 
             {/* input name */}
             <div className="input-group mb-3">
@@ -84,8 +106,18 @@ export default function InsertPlayer({ onBackClick, onSuccess }) {
 
             {/* input position */}
             <div className="input-group mb-3">
-              <select className="form-select" id="inputGroupSelect02" defaultValue="" name="position" value={form.position} onChange={handleChange} required>
-                <option value="" disabled>Your Position</option>
+              <select
+                className="form-select"
+                id="inputGroupSelect02"
+                defaultValue=""
+                name="position"
+                value={form.position}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>
+                  Your Position
+                </option>
                 <option value="PG">Point Guard (PG)</option>
                 <option value="SG">Shooting Guard (SG)</option>
                 <option value="SF">Small Forward (SF)</option>
@@ -132,13 +164,23 @@ export default function InsertPlayer({ onBackClick, onSuccess }) {
 
                 {/* Western Conference */}
                 <option value="Denver Nuggets">Denver Nuggets</option>
-                <option value="Minnesota Timberwolves">Minnesota Timberwolves</option>
-                <option value="Oklahoma City Thunder">Oklahoma City Thunder</option>
-                <option value="Portland Trail Blazers">Portland Trail Blazers</option>
+                <option value="Minnesota Timberwolves">
+                  Minnesota Timberwolves
+                </option>
+                <option value="Oklahoma City Thunder">
+                  Oklahoma City Thunder
+                </option>
+                <option value="Portland Trail Blazers">
+                  Portland Trail Blazers
+                </option>
                 <option value="Utah Jazz">Utah Jazz</option>
 
-                <option value="Golden State Warriors">Golden State Warriors</option>
-                <option value="Los Angeles Clippers">Los Angeles Clippers</option>
+                <option value="Golden State Warriors">
+                  Golden State Warriors
+                </option>
+                <option value="Los Angeles Clippers">
+                  Los Angeles Clippers
+                </option>
                 <option value="Los Angeles Lakers">Los Angeles Lakers</option>
                 <option value="Phoenix Suns">Phoenix Suns</option>
                 <option value="Sacramento Kings">Sacramento Kings</option>
@@ -146,7 +188,9 @@ export default function InsertPlayer({ onBackClick, onSuccess }) {
                 <option value="Dallas Mavericks">Dallas Mavericks</option>
                 <option value="Houston Rockets">Houston Rockets</option>
                 <option value="Memphis Grizzlies">Memphis Grizzlies</option>
-                <option value="New Orleans Pelicans">New Orleans Pelicans</option>
+                <option value="New Orleans Pelicans">
+                  New Orleans Pelicans
+                </option>
                 <option value="San Antonio Spurs">San Antonio Spurs</option>
               </select>
 
@@ -157,8 +201,11 @@ export default function InsertPlayer({ onBackClick, onSuccess }) {
 
             {/* button send & back */}
             <div className="row">
-              <button type="submit" className="btn btn-danger px-2" >Send</button>
-              <button type="button" className="btn btn-primary px-2" onClick={onBackClick}>Back</button>
+              <div className="col d-flex justify-content-center">
+                <button type="submit" className="btn btn-secondary mx-3 px-5 ">
+                  Send🚹
+                </button>
+              </div>
             </div>
           </div>
         </form>
