@@ -8,19 +8,42 @@ export async function tampilPlayer() {
 }
 
 export async function tambahPlayer(player) {
-  const { error } = await supabase.from("tb_player").insert(player);
+  const { data, error } = await supabase
+    .from("tb_player")
+    .insert([player])
+    .select()
+    .single();
 
   if (error) throw error;
+  return data;
+}
+
+export async function uploadPhoto(file) {
+  const fileName = `${Date.now()}-${file.name}`;
+
+  const { error } = await supabase.storage
+    .from("player-photos")
+    .upload(fileName, file);
+
+  if (error) throw error;
+
+  const { data } = supabase.storage
+    .from("player-photos")
+    .getPublicUrl(fileName);
+
+  return data.publicUrl;
 }
 
 export async function editPlayer(id, fields) {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("tb_player")
     .update(fields)
     .eq("id", id)
-    .select();
+    .select()
+    .single();
 
   if (error) throw error;
+  return data;
 }
 
 export async function deletePlayer(id) {

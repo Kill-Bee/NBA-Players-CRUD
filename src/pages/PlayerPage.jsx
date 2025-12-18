@@ -12,10 +12,11 @@ export default function App() {
 
   const fetchPlayers = async () => {
     const data = await tampilPlayer()
-    setPlayers(data)
+    setPlayers(Array.isArray(data) ? data : [])
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchPlayers();
   }, [])
 

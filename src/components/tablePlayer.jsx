@@ -24,6 +24,7 @@ export default function TablePlayer({ players, onAddClick, onEditClick, onDelete
                     src={p.photo}
                     alt={p.name}
                     width="50"
+                    height="50"
                     className="rounded-circle"
                   />
                 </td>
