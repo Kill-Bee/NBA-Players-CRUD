@@ -16,25 +16,25 @@ export default function TablePlayer({ players, onAddClick, onEditClick, onDelete
           </thead>
 
           <tbody className="table-border-bottom-0">
-            {players.map((p, index) => (
-              <tr key={p.id}>
+            {players.map((player, index) => (
+              <tr key={player.id}>
                 <td className="px-4">{index + 1}</td>
                 <td>
                   <img
-                    src={p.photo}
-                    alt={p.name}
+                    src={player.photo}
+                    alt={player.name}
                     width="50"
                     height="50"
                     className="rounded-circle"
                   />
                 </td>
-                <td>{p.name}</td>
-                <td>{p.position}</td>
-                <td>{p.teams}</td>
+                <td>{player.name}</td>
+                <td>{player.position}</td>
+                <td>{player.teams}</td>
                 <td>
                   <button
                     className="btn btn-success mx-3"
-                    onClick={() => onEditClick(p)}
+                    onClick={() => onEditClick(player)}
                   >
                     Edit
                   </button>
@@ -42,7 +42,7 @@ export default function TablePlayer({ players, onAddClick, onEditClick, onDelete
                   <button
                     className="btn"
                     style={{ backgroundColor: "#992820", color: "white" }}
-                    onClick={() => onDeleteClick(p.id)}
+                    onClick={() => onDeleteClick(player.id)}
                   >
                     Delete
                   </button>

@@ -21,6 +21,9 @@ export default function InsertPlayer({ onBackClick, onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const ok = confirm("Yakin mau menambahkan player?");
+    if (!ok) return;
+
     try {
       let photoUrl = null;
 

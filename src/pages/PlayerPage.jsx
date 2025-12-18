@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { deletePlayer, tampilPlayer } from "../services/service.js";
 import TablePlayer from "../components/tablePlayer";
 import InsertPlayer from "../components/tambahPlayer.jsx";
-import EditPlayer from "../components/editPlayer";
+import EditPlayer from "../components/editPlayer.jsx";
 import "../index.css";
 
 export default function App() {
@@ -36,8 +36,8 @@ export default function App() {
           <TablePlayer
             players={players}
             onAddClick={() => setView("insert")}
-            onEditClick={(e) => {
-              setSelectedPlayer(e)
+            onEditClick={(player) => {
+              setSelectedPlayer(player)
               setView("edit")
             }}
             onDeleteClick={handleDelete}
@@ -56,7 +56,7 @@ export default function App() {
 
         {view === "edit" && (
           <EditPlayer
-            player={selectedPlayer}
+            playerData={selectedPlayer}
             onSuccess={() => {
               fetchPlayers()
               setView("table")

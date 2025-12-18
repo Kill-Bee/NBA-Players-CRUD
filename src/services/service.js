@@ -2,9 +2,9 @@ import supabase from "../lib/supabase";
 
 export async function tampilPlayer() {
   const { data, error } = await supabase
-  .from("tb_player")
-  .select("*")
-  .order("name", { ascending: true });
+    .from("tb_player")
+    .select("*")
+    .order("name", { ascending: true });
 
   if (error) throw error;
   return data;
@@ -38,15 +38,12 @@ export async function uploadPhoto(file) {
 }
 
 export async function editPlayer(id, fields) {
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("tb_player")
     .update(fields)
-    .eq("id", id)
-    .select()
-    .single();
+    .eq("id", id);
 
   if (error) throw error;
-  return data;
 }
 
 export async function deletePlayer(id) {
